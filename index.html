@@ -98,27 +98,32 @@
     </div>
   </section>
 
-  <!-- Sección de Comisiones -->
+ <!-- Sección de Comisiones -->
   <section class="max-w-3xl mx-auto px-4 py-16 bg-gray-900 rounded-lg mt-16" data-aos="fade-up">
     <h2 class="text-3xl font-semibold mb-6 text-center">Solicitar Comisión</h2>
-    <form action="https://formsubmit.co/Kyouko9831@gmail.com" method="POST" class="space-y-6">
+    <form action="https://formsubmit.co/Kyouko9831@gmail.com" method="POST" class="space-y-6" enctype="multipart/form-data">
       <input type="hidden" name="_captcha" value="false">
+      
       <div>
         <label class="block mb-2">Nombre</label>
         <input type="text" name="Nombre" required class="w-full p-4 rounded bg-gray-800 border border-gray-600 text-white">
       </div>
+      
       <div>
         <label class="block mb-2">Email</label>
         <input type="email" name="Email" required class="w-full p-4 rounded bg-gray-800 border border-gray-600 text-white">
       </div>
+      
       <div>
         <label class="block mb-2">Descripción del Avatar</label>
         <textarea name="Descripción" rows="4" required class="w-full p-4 rounded bg-gray-800 border border-gray-600 text-white"></textarea>
       </div>
+      
       <div>
         <label class="block mb-2">Imagen de Referencia</label>
-        <input type="file" name="Imagen de Referencia" class="w-full p-4 rounded bg-gray-800 border border-gray-600 text-white">
+        <input type="file" name="Imagen de Referencia" accept="image/*" required class="w-full p-4 rounded bg-gray-800 border border-gray-600 text-white">
       </div>
+      
       <button type="submit" class="bg-red-600 text-white py-3 px-8 rounded-lg hover:bg-red-700 transition">Enviar Comisión</button>
     </form>
   </section>
