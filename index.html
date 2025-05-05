@@ -7,6 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <style>
     body {
       background: url('fondo.png') no-repeat center center fixed;
@@ -100,10 +101,10 @@
     </div>
   </section>
 
-    <!-- Sección de Comisiones -->
-  <section class="max-w-3xl mx-auto px-4 py-16" data-aos="fade-up">
+  <!-- Sección de Comisiones -->
+  <section class="max-w-3xl mx-auto px-4 py-16 bg-gray-900 rounded-lg mt-16" data-aos="fade-up">
     <h2 class="text-3xl font-semibold mb-6 text-center">Solicitar Comisión</h2>
-    <form action="https://formsubmit.co/Kyouko9831@gmail.com" method="POST" enctype="multipart/form-data" class="space-y-6">
+    <form action="https://formsubmit.co/Kyouko9831@gmail.com" method="POST" class="space-y-6">
       <input type="hidden" name="_captcha" value="false">
       <div>
         <label class="block mb-2">Nombre</label>
@@ -118,39 +119,14 @@
         <textarea name="Descripción" rows="4" required class="w-full p-4 rounded bg-gray-800 border border-gray-600 text-white"></textarea>
       </div>
       <div>
-        <label class="block mb-2">Imágenes de Referencia</label>
-        <input type="file" name="Referencia" accept="image/*" multiple class="w-full p-4 rounded bg-gray-800 border border-gray-600 text-white">
+        <label class="block mb-2">Imagen de Referencia</label>
+        <input type="file" name="Imagen de Referencia" class="w-full p-4 rounded bg-gray-800 border border-gray-600 text-white">
       </div>
       <button type="submit" class="bg-red-600 text-white py-3 px-8 rounded-lg hover:bg-red-700 transition">Enviar Comisión</button>
     </form>
   </section>
 
 </div>
-  <!-- resto sin cambios -->
 
-</div>
-
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-  AOS.init();
-  new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    breakpoints: {
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 }
-    }
-  });
-</script>
-
-</body>
-</html>
+ 
