@@ -1,13 +1,4 @@
-import zipfile
-
-# Ruta para guardar los archivos
-folder_path = "/mnt/data/KyoLabAvatars"
-os.makedirs(folder_path, exist_ok=True)
-
-# Guardar el HTML base
-html_file_path = f"{folder_path}/index.html"
-with open(html_file_path, "w") as f:
-    f.write("""<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -16,61 +7,53 @@ with open(html_file_path, "w") as f:
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-white font-sans">
-  <header class="text-center py-10">
+
+  <!-- Banner -->
+  <header class="text-center py-20 bg-gradient-to-r from-red-500 to-black">
     <h1 class="text-5xl font-bold">KyoLab Avatars</h1>
-    <p class="text-xl mt-4">Avatares personalizados y listos para VRChat y VTubing</p>
+    <p class="text-xl mt-4">Avatares personalizados listos para VRChat y VTubing</p>
   </header>
-  <section class="max-w-6xl mx-auto px-4 py-8">
-    <h2 class="text-3xl font-semibold mb-6">Avatares en Venta</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="border rounded-xl p-4">
-        <img src="avatar1.jpg" alt="Avatar 1" class="rounded mb-4">
+
+  <!-- Avatares en Venta -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-semibold mb-6 text-center">Avatares Disponibles</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Avatar 1 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+        <img src="avatar1.jpg" alt="Avatar 1" class="rounded-lg mb-4">
         <h3 class="text-2xl font-bold">Cyber Neko</h3>
-        <p class="mt-2">Precio: $50 USD</p>
-        <a href="https://paypal.me/kyouko98?country.x=MX&locale.x=es_XC" target="_blank" class="inline-block mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Comprar</a>
+        <p class="mt-2">Precio: $60 USD</p>
+        <a href="https://paypal.me/kyouko98/60" target="_blank" class="inline-block mt-4 bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition">Comprar</a>
       </div>
+      <!-- Agrega más avatares aquí -->
     </div>
   </section>
-  <section class="max-w-3xl mx-auto px-4 py-8">
-    <h2 class="text-3xl font-semibold mb-6">Solicitar Comisión</h2>
-    <form action="https://formsubmit.co/TU_CORREO@gmail.com" method="POST" class="space-y-4">
+
+  <!-- Sección de Comisiones -->
+  <section class="max-w-3xl mx-auto px-4 py-16 bg-gray-900 rounded-lg">
+    <h2 class="text-3xl font-semibold mb-6 text-center">Solicitar Comisión</h2>
+    <form action="https://formsubmit.co/Kyouko9831@gmail.com" method="POST" class="space-y-6">
       <input type="hidden" name="_captcha" value="false">
       <div>
-        <label class="block mb-1">Nombre</label>
-        <input type="text" name="Nombre" required class="w-full p-2 rounded bg-gray-800 border border-gray-600">
+        <label class="block mb-2">Nombre</label>
+        <input type="text" name="Nombre" required class="w-full p-4 rounded bg-gray-800 border border-gray-600 text-white">
       </div>
       <div>
-        <label class="block mb-1">Email</label>
-        <input type="email" name="Email" required class="w-full p-2 rounded bg-gray-800 border border-gray-600">
+        <label class="block mb-2">Email</label>
+        <input type="email" name="Email" required class="w-full p-4 rounded bg-gray-800 border border-gray-600 text-white">
       </div>
       <div>
-        <label class="block mb-1">Descripción del Avatar</label>
-        <textarea name="Descripción" rows="4" required class="w-full p-2 rounded bg-gray-800 border border-gray-600"></textarea>
+        <label class="block mb-2">Descripción del Avatar</label>
+        <textarea name="Descripción" rows="4" required class="w-full p-4 rounded bg-gray-800 border border-gray-600 text-white"></textarea>
       </div>
-      <div>
-        <label class="block mb-1">Link de Referencias (si tienes)</label>
-        <input type="url" name="Referencias" class="w-full p-2 rounded bg-gray-800 border border-gray-600">
-      </div>
-      <button type="submit" class="bg-red-600 px-6 py-2 rounded hover:bg-red-700">Enviar Comisión</button>
+      <button type="submit" class="bg-red-600 text-white py-3 px-8 rounded-lg hover:bg-red-700 transition">Enviar Comisión</button>
     </form>
   </section>
-  <footer class="text-center py-6 text-gray-400">
-    © 2025 KyoLab Avatars. Todos los derechos reservados.
+
+  <!-- Footer -->
+  <footer class="text-center py-8 text-gray-400">
+    <p>© 2025 KyoLab Avatars. Todos los derechos reservados.</p>
   </footer>
+
 </body>
-</html>""")
-
-# Crear imagen vacía de muestra
-with open(f"{folder_path}/avatar1.jpg", "wb") as img_file:
-    img_file.write(b"")
-
-# Crear el ZIP
-zip_path = "/mnt/data/KyoLabAvatars.zip"
-with zipfile.ZipFile(zip_path, 'w') as zipf:
-    for root, dirs, files in os.walk(folder_path):
-        for file in files:
-            file_path = os.path.join(root, file)
-            arcname = os.path.relpath(file_path, folder_path)
-            zipf.write(file_path, arcname)
-
-zip_path
+</html>
