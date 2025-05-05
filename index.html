@@ -27,18 +27,35 @@
       50% { left: 100%; }
       100% { left: 100%; }
     }
+
+    body {
+      background-image: url('fondo.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+
+    .blur-overlay {
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(5px);
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
   </style>
 </head>
 <body class="bg-black text-white font-sans">
 
-<!-- Banner -->
-  <header class="relative text-center py-20 bg-transparent" data-aos="fade-down">
-  <img src="banner-image.png" alt="Banner Image" class="absolute inset-0 w-full h-full object-cover opacity-20">
-  <div class="relative z-10">
-    <h1 class="text-5xl font-bold">KyoLab Avatars</h1>
-    <p class="text-xl mt-4">Avatares personalizados para VRChat y VRM</p>
-  </div>
-</header>
+  <!-- Banner -->
+  <header class="relative text-center py-20 bg-transparent overflow-hidden" data-aos="fade-down">
+    <img src="banner-image.png" alt="Banner Image" class="absolute inset-0 w-full h-full object-cover opacity-30">
+    <div class="blur-overlay"></div>
+    <div class="relative z-10">
+      <h1 class="text-5xl font-bold">KyoLab Avatars</h1>
+      <p class="text-xl mt-4">Avatares personalizados listos para VRChat y VTubing</p>
+    </div>
+  </header>
 
   <!-- Avatares en Venta -->
   <section class="max-w-6xl mx-auto px-4 py-16">
@@ -49,16 +66,36 @@
         <img src="KYO.png" alt="Avatar 1" class="rounded-lg mb-4 cursor-pointer" onclick="openLightbox(this.src)">
         <h3 class="text-2xl font-bold">Cyber Neko</h3>
         <p class="mt-2">Precio: $60 USD</p>
-        <a href="https://www.paypal.com/ncp/payment/VCZE7EX5FWV38" target="_blank" class="inline-block mt-4 px-6 py-3 rounded-lg text-white bg-gradient-to-r from-red-600 to-red-800 hover:from-pink-600 hover:to-red-700 transition glitch-button">Comprar</a>
+        <a href="https://paypal.me/kyouko98/60" target="_blank" class="inline-block mt-4 px-6 py-3 rounded-lg text-white bg-gradient-to-r from-red-600 to-red-800 hover:from-pink-600 hover:to-red-700 transition glitch-button">Comprar</a>
       </div>
-      <!-- Más avatares -->
+      <!-- Avatar 2 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-red-500/50" data-aos="zoom-in">
+        <img src="KYO.png" alt="Avatar 2" class="rounded-lg mb-4 cursor-pointer" onclick="openLightbox(this.src)">
+        <h3 class="text-2xl font-bold">Cyber Kitsune</h3>
+        <p class="mt-2">Precio: $70 USD</p>
+        <a href="https://paypal.me/kyouko98/70" target="_blank" class="inline-block mt-4 px-6 py-3 rounded-lg text-white bg-gradient-to-r from-red-600 to-red-800 hover:from-pink-600 hover:to-red-700 transition glitch-button">Comprar</a>
+      </div>
+      <!-- Avatar 3 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-red-500/50" data-aos="zoom-in">
+        <img src="KYO.png" alt="Avatar 3" class="rounded-lg mb-4 cursor-pointer" onclick="openLightbox(this.src)">
+        <h3 class="text-2xl font-bold">Neo Oni</h3>
+        <p class="mt-2">Precio: $65 USD</p>
+        <a href="https://paypal.me/kyouko98/65" target="_blank" class="inline-block mt-4 px-6 py-3 rounded-lg text-white bg-gradient-to-r from-red-600 to-red-800 hover:from-pink-600 hover:to-red-700 transition glitch-button">Comprar</a>
+      </div>
+      <!-- Avatar 4 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-red-500/50" data-aos="zoom-in">
+        <img src="KYO.png" alt="Avatar 4" class="rounded-lg mb-4 cursor-pointer" onclick="openLightbox(this.src)">
+        <h3 class="text-2xl font-bold">Holo Bunny</h3>
+        <p class="mt-2">Precio: $75 USD</p>
+        <a href="https://paypal.me/kyouko98/75" target="_blank" class="inline-block mt-4 px-6 py-3 rounded-lg text-white bg-gradient-to-r from-red-600 to-red-800 hover:from-pink-600 hover:to-red-700 transition glitch-button">Comprar</a>
+      </div>
     </div>
   </section>
 
   <!-- Sección de Comisiones -->
   <section class="max-w-3xl mx-auto px-4 py-16 bg-gray-900 rounded-lg" data-aos="fade-up">
     <h2 class="text-3xl font-semibold mb-6 text-center">Solicitar Comisión</h2>
-    <form action="https://formsubmit.co/Kyouko9831@gmail.com" method="POST" class="space-y-6">
+    <form action="https://formsubmit.co/Kyouko9831@gmail.com" method="POST" enctype="multipart/form-data" class="space-y-6">
       <input type="hidden" name="_captcha" value="false">
       <div>
         <label class="block mb-2">Nombre</label>
@@ -72,16 +109,19 @@
         <label class="block mb-2">Descripción del Avatar</label>
         <textarea name="Descripción" rows="4" required class="w-full p-4 rounded bg-gray-800 border border-gray-600 text-white"></textarea>
       </div>
+      <div>
+        <label class="block mb-2">Subir Referencias (opcional)</label>
+        <input type="file" name="Referencia" accept="image/*" multiple class="w-full p-4 rounded bg-gray-800 border border-gray-600 text-white" onchange="previewImages(event)">
+      </div>
+      <div id="preview" class="grid grid-cols-3 gap-4"></div>
       <button type="submit" class="bg-red-600 text-white py-3 px-8 rounded-lg hover:bg-red-700 transition">Enviar Comisión</button>
     </form>
   </section>
 
-  <!-- Footer -->
   <footer class="text-center py-8 text-gray-400">
     <p>© 2025 KyoLab Avatars. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- Lightbox Modal -->
   <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50">
     <span class="absolute top-4 right-8 text-white text-3xl cursor-pointer" onclick="closeLightbox()">&times;</span>
     <img id="lightbox-img" src="" class="max-w-full max-h-full rounded-lg shadow-lg">
@@ -89,7 +129,6 @@
 
   <script>
     AOS.init();
-
     function openLightbox(src) {
       document.getElementById('lightbox-img').src = src;
       document.getElementById('lightbox').classList.remove('hidden');
@@ -97,6 +136,21 @@
     }
     function closeLightbox() {
       document.getElementById('lightbox').classList.add('hidden');
+    }
+    function previewImages(event) {
+      const files = event.target.files;
+      const preview = document.getElementById('preview');
+      preview.innerHTML = '';
+      Array.from(files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.className = 'rounded-lg object-cover h-32 w-full';
+          preview.appendChild(img);
+        }
+        reader.readAsDataURL(file);
+      });
     }
   </script>
 
