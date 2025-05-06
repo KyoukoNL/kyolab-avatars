@@ -7,7 +7,7 @@ const productos = [
         "images/KYO2.png",
         "images/KYO.png"
       ],
-      linkCompra: "https://www.paypal.com/paypalme/kyouko98/60"
+      linkCompra: "https://www.paypal.com/ncp/payment/A2QFXUXM7S822"
     },
     {
       nombre: "Cyber Kitsune",
