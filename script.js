@@ -17,7 +17,7 @@ const productos = [
         "images/KYO.png",
         "images/KYO.png"
       ],
-      linkCompra: "https://www.paypal.com/paypalme/kyouko98/75"
+      linkCompra: "https://www.paypal.com/ncp/payment/TZQ7MMM7G3YMY"
     },
     {
       nombre: "Glitch Oni",
@@ -27,7 +27,7 @@ const productos = [
         "images/KYO.png",
         "images/KYO.png"
       ],
-      linkCompra: "https://www.paypal.com/paypalme/kyouko98/60"
+      linkCompra: "https://www.paypal.com/ncp/payment/VCZE7EX5FWV38"
     },
     {
       nombre: "Shadow Oni",
@@ -37,7 +37,7 @@ const productos = [
         "images/KYO.png",
         "images/KYO.png"
       ],
-      linkCompra: "https://www.paypal.com/paypalme/kyouko98/85"
+      linkCompra: "https://www.paypal.com/ncp/payment/E6UCTE6SLHQQN"
     },
     {
       nombre: "Cyber Neko V2",
@@ -47,7 +47,7 @@ const productos = [
         "images/KYO.png",
         "images/KYO.png"
       ],
-      linkCompra: "https://www.paypal.com/paypalme/kyouko98/90"
+      linkCompra: "https://www.paypal.com/ncp/payment/8UEPUE49GVCDU"
     },
     {
       nombre: "Glitch Oni X",
@@ -57,7 +57,7 @@ const productos = [
         "images/KYO.png",
         "images/KYO.png"
       ],
-      linkCompra: "https://www.paypal.com/paypalme/kyouko98/100"
+      linkCompra: "https://www.paypal.com/ncp/payment/V4MBWF74FBJ3U"
     }
   ];
   
