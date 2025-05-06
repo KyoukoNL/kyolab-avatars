@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="particles-js"></div>
   <header class="banner">
     <h1>Avatares Disponibles</h1>
     <p>Descubre nuestros productos destacados</p>
@@ -15,13 +16,12 @@
   <main class="catalogo" id="catalogo">
     <!-- Productos se insertan aquí dinámicamente -->
   </main>
-
-  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <section class="comision-section">
     <h2>Solicitar Comisión</h2>
     <form action="https://formsubmit.co/Kyouko9831@gmail.com" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://kyoukonl.github.io/kyolab-avatars/gracias">
+  
       <label>Nombre</label>
       <input type="text" name="Nombre" required>
   
@@ -32,11 +32,24 @@
       <textarea name="Descripción" rows="4" required></textarea>
   
       <label>Imagen de Referencia</label>
-      <input type="file" name="Imagen de Referencia" accept="image/*" >
+      <input type="file" name="Imagen de Referencia" accept="image/*">
   
       <button type="submit">Enviar Comisión</button>
     </form>
   </section>
-  
+  <div id="product-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-carousel">
+        <div class="modal-carousel-container" id="modal-carousel"></div>
+        <button class="modal-prev">&#10094;</button>
+        <button class="modal-next">&#10095;</button>
+      </div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-price"></p>
+      <button id="modal-buy-button" class="buy-button">Comprar</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
