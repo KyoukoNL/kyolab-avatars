@@ -1,6 +1,6 @@
 const productos = [
     {
-      nombre: "Cyber Neko",
+      nombre: "Airi + Shinano",
       precio: "60 USD",
       imagenes: [
         "images/KYO.png",
@@ -10,7 +10,7 @@ const productos = [
       linkCompra: "https://www.paypal.com/ncp/payment/A2QFXUXM7S822"
     },
     {
-      nombre: "Cyber Kitsune",
+      nombre: "Airi + Karin",
       precio: "75 USD",
       imagenes: [
         "images/KYO.png",
@@ -20,7 +20,7 @@ const productos = [
       linkCompra: "https://www.paypal.com/ncp/payment/TZQ7MMM7G3YMY"
     },
     {
-      nombre: "Glitch Oni",
+      nombre: "Kimera Custom",
       precio: "80 USD",
       imagenes: [
         "images/KYO.png",
@@ -30,7 +30,7 @@ const productos = [
       linkCompra: "https://www.paypal.com/ncp/payment/VCZE7EX5FWV38"
     },
     {
-      nombre: "Shadow Oni",
+      nombre: "Cualquier Avatar",
       precio: "85 USD",
       imagenes: [
         "images/KYO.png",
@@ -205,3 +205,4 @@ const productos = [
     },
     retina_detect: true
   });
+
