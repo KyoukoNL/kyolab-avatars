@@ -174,3 +174,7 @@ button:hover {
   .comision-section { width: 85%; padding: 20px; }
   .banner h1 { font-size: 2.5rem; }
 }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
