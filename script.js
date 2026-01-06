@@ -80,9 +80,12 @@ document.querySelector('.modal-next').addEventListener('click', (e) => {
 });
 
 // --- RENDERIZADO DE PRODUCTOS ---
-productos.forEach((producto, index) => {
-  const item = document.createElement("div");
-  item.className = "producto";
+productos.forEach(p => {
+    const img = new Image();
+    img.src = p.imagenes[0];
+    img.onload = () => console.log("Cargada con éxito: " + p.imagenes[0]);
+    img.onerror = () => console.error("Error al cargar: " + p.imagenes[0]);
+});
   // Añadimos una animación de entrada (opcional con CSS)
   item.style.animation = `fadeIn 0.5s ease forwards ${index * 0.1}s`;
   item.style.opacity = "0";
@@ -178,4 +181,5 @@ particlesJS("particles-js", {
   },
   retina_detect: true
 });
+
 
