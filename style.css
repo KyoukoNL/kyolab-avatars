@@ -1,67 +1,6 @@
-/* --- Variables de Color --- */
-:root {
-  --primary-red: #ff3e3e;
-  --dark-red: #c62828;
-  --bg-dark: #0f172a;
-  --card-bg: rgba(30, 41, 59, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --text-main: #f8fafc;
-}
+/* --- Variables y Base (Mantener igual) --- */
 
-/* --- Base y Fondo --- */
-body {
-  font-family: 'Montserrat', sans-serif; /* Asegúrate de haberlo puesto en el HTML */
-  margin: 0;
-  padding: 0;
-  color: var(--text-main);
-  background-color: var(--bg-dark);
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image: url('images/fondo.png');
-  background-size: cover;
-  background-position: center;
-  z-index: -2;
-  filter: brightness(0.4) contrast(1.1);
-}
-
-/* Partículas */
-#particles-js {
-  position: fixed;
-  width: 100%; height: 100%;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* --- Header / Banner --- */
-.banner {
-  height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: radial-gradient(circle, rgba(255,62,62,0.1) 0%, transparent 70%);
-}
-
-.banner h1 {
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  margin: 0;
-  text-shadow: 0 0 20px rgba(255, 62, 62, 0.5);
-}
-
-.banner p {
-  font-size: 1.2rem;
-  opacity: 0.8;
-  font-weight: 300;
-}
+/* ... (tu código anterior de variables, body y banner) ... */
 
 /* --- Catálogo (Grid Moderno) --- */
 .catalogo {
@@ -73,6 +12,7 @@ body::before {
   margin: 0 auto;
 }
 
+/* --- TARJETA DE PRODUCTO MODIFICADA --- */
 .producto {
   background: var(--card-bg);
   backdrop-filter: blur(12px);
@@ -81,101 +21,60 @@ body::before {
   padding: 20px;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden; /* Importante para que las fotos no se salgan */
 }
 
-.producto:hover {
-  transform: translateY(-10px);
-  border-color: var(--primary-red);
-  box-shadow: 0 15px 30px rgba(255, 62, 62, 0.2);
-}
-
-.producto img {
+/* --- CONTENEDOR DEL CARRUSEL --- */
+.carousel {
+  position: relative;
   width: 100%;
-  aspect-ratio: 1/1; /* Esto obliga a que la imagen ocupe su lugar aunque tarde en cargar */
-  object-fit: cover; 
+  aspect-ratio: 1/1; /* Mantiene la tarjeta cuadrada y estable */
+  overflow: hidden;
   border-radius: 12px;
-  display: block; /* Asegúrate de que no diga 'none' */
+  margin-bottom: 15px;
 }
 
-.producto h3 { margin: 10px 0; font-size: 1.4rem; }
-.producto p { color: #cbd5e1; font-weight: bold; font-size: 1.2rem; }
+/* LA "TIRA" QUE SE DESLIZA */
+.carousel-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Deslizamiento suave */
+}
 
-/* --- Botones --- */
-button, .buy-button {
-  background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
-  color: white;
+.carousel-track img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0; /* Evita que las imágenes se aplasten entre sí */
+  display: block;
+}
+
+/* BOTONES DEL CARRUSEL */
+.carousel button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
   border: none;
-  padding: 12px 25px;
-  border-radius: 50px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-}
-
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px var(--primary-red);
-}
-
-/* --- Sección Comisiones (Glassmorphism) --- */
-.comision-section {
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  max-width: 600px;
-  margin: 100px auto;
-  padding: 40px;
-  border-radius: 24px;
-}
-
-.comision-section input, 
-.comision-section textarea {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--glass-border);
   color: white;
-  padding: 15px;
-  border-radius: 12px;
-  margin-top: 8px;
-  transition: 0.3s;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+  padding: 0; /* Quita padding extra */
 }
 
-.comision-section input:focus {
-  outline: none;
-  border-color: var(--primary-red);
-  background: rgba(255, 255, 255, 0.1);
+.carousel button:hover {
+  background: var(--primary-red);
 }
 
-/* --- Modal Estilizado --- */
-.modal-content {
-  background: #1e293b;
-  border: 1px solid var(--primary-red);
-  width: 90% !important; /* Más responsive */
-  max-width: 500px;
-  border-radius: 20px;
-  box-shadow: 0 0 50px rgba(0,0,0,0.8);
-}
+.carousel .prev { left: 10px; }
+.carousel .next { right: 10px; }
 
-.modal .close {
-  top: 15px;
-  right: 20px;
-  transition: 0.3s;
-}
-
-.modal .close:hover {
-  transform: rotate(90deg);
-  color: var(--primary-red);
-}
-
-/* --- Media Queries (Móviles) --- */
-@media (max-width: 768px) {
-  .catalogo { grid-template-columns: 1fr; width: 90%; }
-  .comision-section { width: 85%; padding: 20px; }
-  .banner h1 { font-size: 2.5rem; }
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
+/* ... (resto de tu código de botones, comisiones y modal) ... */
