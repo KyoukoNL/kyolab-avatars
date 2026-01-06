@@ -48,15 +48,14 @@ const modalCarouselContainer = document.getElementById("modal-carousel");
 let currentModalImageIndex = 0;
 let modalImages = [];
 
-// FORMA CORRECTA
-item.addEventListener("click", () => {
-    modalTitle.textContent = producto.nombre;
-    modalPrice.textContent = producto.precio;
-    modalImages = producto.imagenes; // Guardamos la lista de fotos
-    currentModalImageIndex = 0;
-    updateModalCarousel(); // Esta función se encarga de mostrar las fotos
-    modal.style.display = 'flex';
-});
+// --- FUNCIONES DEL MODAL ---
+function updateModalCarousel() {
+  modalCarouselContainer.innerHTML = '';
+  modalImages.forEach(src => {
+    const img = document.createElement('img');
+    img.src = src;
+    modalCarouselContainer.appendChild(img);
+  });
   modalCarouselContainer.style.transform = `translateX(-${currentModalImageIndex * 100}%)`;
 }
 
@@ -80,23 +79,20 @@ document.querySelector('.modal-next').addEventListener('click', (e) => {
 });
 
 // --- RENDERIZADO DE PRODUCTOS ---
-productos.forEach(p => {
-    const img = new Image();
-    img.src = p.imagenes[0];
-    img.onload = () => console.log("Cargada con éxito: " + p.imagenes[0]);
-    img.onerror = () => console.error("Error al cargar: " + p.imagenes[0]);
-});
-  // Añadimos una animación de entrada (opcional con CSS)
+productos.forEach((producto, index) => {
+  const item = document.createElement("div");
+  item.className = "producto";
   item.style.animation = `fadeIn 0.5s ease forwards ${index * 0.1}s`;
   item.style.opacity = "0";
 
-  const imagenesHTML = producto.imagenes.map((img, i) => `
-    <img src="${img}" class="${i === 0 ? 'active' : ''}" data-index="${i}">
-  `).join("");
+  // Estructura de carrusel deslizable
+  const imagenesHTML = producto.imagenes.map(img => `<img src="${img}">`).join("");
 
   item.innerHTML = `
     <div class="carousel">
-      ${imagenesHTML}
+      <div class="carousel-track">
+        ${imagenesHTML}
+      </div>
       <button class="prev">‹</button>
       <button class="next">›</button>
     </div>
@@ -107,79 +103,16 @@ productos.forEach(p => {
 
   catalogo.appendChild(item);
 
-  // Lógica de Carrusel de la Card
-  const carousel = item.querySelector(".carousel");
-  const images = carousel.querySelectorAll("img");
-  let current = 0;
+  // Lógica de Carrusel de la Card (Deslizamiento)
+  const track = item.querySelector(".carousel-track");
+  const numImages = producto.imagenes.length;
+  let currentSlide = 0;
 
-  const showImage = (idx) => {
-    images.forEach(img => img.classList.remove("active"));
-    images[idx].classList.add("active");
+  const updateSlide = () => {
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
   };
 
   item.querySelector(".prev").addEventListener("click", (e) => {
-    e.stopPropagation(); // Evita abrir el modal al cambiar foto
-    current = (current - 1 + images.length) % images.length;
-    showImage(current);
-  });
-
-  item.querySelector(".next").addEventListener("click", (e) => {
-    e.stopPropagation(); // Evita abrir el modal al cambiar foto
-    current = (current + 1) % images.length;
-    showImage(current);
-  });
-
-  // Abrir Modal
-  item.addEventListener("click", () => {
-    modalTitle.textContent = producto.nombre;
-    modalPrice.textContent = producto.precio;
-    modalImages = producto.imagenes;
-    currentModalImageIndex = 0;
-    updateModalCarousel();
-    modal.style.display = 'flex';
-    
-    modalBuyButton.onclick = () => window.open(producto.linkCompra, "_blank");
-  });
-});
-
-// --- CONFIGURACIÓN DE PARTÍCULAS (Ajustada para mejor rendimiento) ---
-particlesJS("particles-js", {
-  particles: {
-    number: { value: 50, density: { enable: true, value_area: 800 } },
-    color: { value: "#ff3e3e" }, // Color rojo para combinar con tu tema
-    shape: { type: "circle" },
-    opacity: { value: 0.5, random: true },
-    size: { value: 2, random: true },
-    line_linked: {
-      enable: true,
-      distance: 150,
-      color: "#ff3e3e",
-      opacity: 0.2,
-      width: 1
-    },
-    move: {
-      enable: true,
-      speed: 1,
-      direction: "none",
-      random: true,
-      straight: false,
-      out_mode: "out",
-      bounce: false,
-    }
-  },
-  interactivity: {
-    detect_on: "canvas",
-    events: {
-      onhover: { enable: true, mode: "grab" },
-      onclick: { enable: true, mode: "push" },
-      resize: true
-    },
-    modes: {
-      grab: { distance: 200, line_linked: { opacity: 0.5 } },
-      push: { particles_nb: 3 }
-    }
-  },
-  retina_detect: true
-});
-
-
+    e.stopPropagation();
+    currentSlide = (currentSlide - 1 + numImages) % numImages;
+    updateSlide
