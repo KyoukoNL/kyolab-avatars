@@ -48,14 +48,15 @@ const modalCarouselContainer = document.getElementById("modal-carousel");
 let currentModalImageIndex = 0;
 let modalImages = [];
 
-// --- FUNCIONES DEL MODAL ---
-function updateModalCarousel() {
-  modalCarouselContainer.innerHTML = '';
-  modalImages.forEach(src => {
-    const img = document.createElement('img');
-    img.src = src;
-    modalCarouselContainer.appendChild(img);
-  });
+// FORMA CORRECTA
+item.addEventListener("click", () => {
+    modalTitle.textContent = producto.nombre;
+    modalPrice.textContent = producto.precio;
+    modalImages = producto.imagenes; // Guardamos la lista de fotos
+    currentModalImageIndex = 0;
+    updateModalCarousel(); // Esta función se encarga de mostrar las fotos
+    modal.style.display = 'flex';
+});
   modalCarouselContainer.style.transform = `translateX(-${currentModalImageIndex * 100}%)`;
 }
 
@@ -177,3 +178,4 @@ particlesJS("particles-js", {
   },
   retina_detect: true
 });
+
