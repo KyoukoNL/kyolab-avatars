@@ -1,85 +1,102 @@
 const productos = [
   {
-    nombre: "Shinari",
-    precio: "$60 USD",
+    nombre: "Avatar Base",
+    precio: "$40 USD",
     imagenes: [
-      KYO.png,
-      KYO2.png,
-      KYO.png
+      "images/avatar1.png",
+      "images/avatar2.png",
+      "images/avatar3.png"
     ],
-    linkCompra: "https://www.paypal.com/ncp/payment/2LHY5CUSG467A"
-  },
-  {
-    nombre: "Airi Gotica",
-    precio: "$60 USD",
-    imagenes: [
-      KYO2.png,
-      KYO.png
-    ],
-    linkCompra: "https://www.paypal.com/ncp/payment/2LHY5CUSG467A"
-  },
-  {
-    nombre: "Manuka 2",
-    precio: "$60 USD",
-    imagenes: [
-      KYO2.png,
-    ],
-    linkCompra: "https://www.paypal.com/ncp/payment/2LHY5CUSG467A"
+    link: "https://www.paypal.com/paypalme/kyouko9831/40"
   }
 ];
 
 const catalogo = document.getElementById("catalogo");
 
-productos.forEach((producto, index) => {
-  const item = document.createElement("div");
-  item.className = "producto";
+/* MODAL */
+const modal = document.getElementById("image-modal");
+const modalImg = document.getElementById("modal-image");
+const closeBtn = document.querySelector(".modal-close");
+const prevBtn = document.querySelector(".modal-prev");
+const nextBtn = document.querySelector(".modal-next");
 
-  const imagenes = Array.isArray(producto.imagenes) ? producto.imagenes : [];
-  const carouselId = `carousel-${index}`;
+let modalImages = [];
+let modalIndex = 0;
 
-  const imagenesHTML = imagenes
-    .map(
-      (img, i) =>
-        `<img src="${img}" class="${i === 0 ? "active" : ""}">`
-    )
-    .join("");
+const openModal = (images, index) => {
+  modalImages = images;
+  modalIndex = index;
+  modalImg.src = modalImages[modalIndex];
+  modal.classList.remove("hidden");
+};
 
-  item.innerHTML = `
-    <div class="carousel" id="${carouselId}">
-      ${imagenesHTML}
-      ${imagenes.length > 1 ? `<button class="prev">‹</button><button class="next">›</button>` : ""}
+const updateModal = () => {
+  modalImg.src = modalImages[modalIndex];
+};
+
+closeBtn.onclick = () => modal.classList.add("hidden");
+modal.onclick = e => e.target === modal && modal.classList.add("hidden");
+
+prevBtn.onclick = () => {
+  modalIndex = (modalIndex - 1 + modalImages.length) % modalImages.length;
+  updateModal();
+};
+
+nextBtn.onclick = () => {
+  modalIndex = (modalIndex + 1) % modalImages.length;
+  updateModal();
+};
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") modal.classList.add("hidden");
+});
+
+/* CATÁLOGO */
+productos.forEach((producto, i) => {
+  const div = document.createElement("div");
+  div.className = "producto";
+
+  div.innerHTML = `
+    <div class="carousel">
+      <div class="carousel-track">
+        ${producto.imagenes.map(img => `<img src="${img}">`).join("")}
+      </div>
+      ${producto.imagenes.length > 1 ? `
+        <button class="prev">‹</button>
+        <button class="next">›</button>
+      ` : ""}
     </div>
 
     <h3>${producto.nombre}</h3>
     <p>${producto.precio}</p>
-
-    <a href="${producto.linkCompra}" target="_blank">
+    <a href="${producto.link}" target="_blank">
       <button>Comprar</button>
     </a>
   `;
 
-  catalogo.appendChild(item);
+  catalogo.appendChild(div);
 
-  // --- Lógica del carrusel ---
-  if (imagenes.length > 1) {
-    const carousel = document.getElementById(carouselId);
-    const imgs = carousel.querySelectorAll("img");
-    let current = 0;
+  const track = div.querySelector(".carousel-track");
+  const imgs = div.querySelectorAll("img");
+  let index = 0;
 
-    const showImage = (i) => {
-      imgs.forEach(img => img.classList.remove("active"));
-      imgs[i].classList.add("active");
-    };
+  const update = () => {
+    track.style.transform = `translateX(-${index * 100}%)`;
+  };
 
-    carousel.querySelector(".prev").addEventListener("click", () => {
-      current = (current - 1 + imgs.length) % imgs.length;
-      showImage(current);
-    });
+  div.querySelector(".prev")?.addEventListener("click", e => {
+    e.stopPropagation();
+    index = (index - 1 + imgs.length) % imgs.length;
+    update();
+  });
 
-    carousel.querySelector(".next").addEventListener("click", () => {
-      current = (current + 1) % imgs.length;
-      showImage(current);
-    });
-  }
+  div.querySelector(".next")?.addEventListener("click", e => {
+    e.stopPropagation();
+    index = (index + 1) % imgs.length;
+    update();
+  });
+
+  imgs.forEach((img, imgIndex) => {
+    img.addEventListener("click", () => openModal(producto.imagenes, imgIndex));
+  });
 });
-
