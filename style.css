@@ -1,8 +1,42 @@
-/* --- Variables y Base (Mantener igual) --- */
+/* --- Variables y Base --- */
+:root {
+  --primary-red: #ff3e3e;
+  --dark-red: #c62828;
+  --bg-dark: #0f172a;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-main: #f8fafc;
+}
 
-/* ... (tu código anterior de variables, body y banner) ... */
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: var(--text-main);
+  background-color: var(--bg-dark);
+  overflow-x: hidden;
+}
 
-/* --- Catálogo (Grid Moderno) --- */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url('images/fondo.png');
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  filter: brightness(0.4) contrast(1.1);
+}
+
+#particles-js {
+  position: fixed;
+  width: 100%; height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* --- Catálogo --- */
 .catalogo {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -12,7 +46,6 @@
   margin: 0 auto;
 }
 
-/* --- TARJETA DE PRODUCTO MODIFICADA --- */
 .producto {
   background: var(--card-bg);
   backdrop-filter: blur(12px);
@@ -21,75 +54,51 @@
   padding: 20px;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  overflow: hidden; /* Importante para que las fotos no se salgan */
+  overflow: hidden;
 }
 
-/* Contenedor principal de la foto en la tarjeta */
+.producto:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary-red);
+  box-shadow: 0 15px 30px rgba(255, 62, 62, 0.2);
+}
+
+/* --- Estructura del Carrusel --- */
 .carousel {
   position: relative;
   width: 100%;
-  aspect-ratio: 1/1; /* Mantiene el cuadrado */
-  overflow: hidden; /* Corta las fotos que sobran a los lados */
+  aspect-ratio: 1/1; 
+  overflow: hidden;
   border-radius: 12px;
+  margin-bottom: 15px;
+  cursor: pointer; /* Indica que se puede hacer clic para ver detalles */
 }
 
-/* La fila de fotos que se desliza */
 .carousel-track {
-  display: flex; /* Pone las fotos una al lado de la otra */
+  display: flex; /* Alinea fotos en fila */
   width: 100%;
   height: 100%;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .carousel-track img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  flex-shrink: 0; /* EVITA QUE LAS FOTOS SE APLASTEN */
-}
-
-/* LA "TIRA" QUE SE DESLIZA */
-.carousel-track {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Deslizamiento suave */
-}
-
-.carousel-track img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  flex-shrink: 0; /* Evita que las imágenes se aplasten entre sí */
+  flex-shrink: 0; /* Evita que las fotos se aplasten */
   display: block;
 }
 
-/* BOTONES DEL CARRUSEL */
+/* --- Botones de Navegación --- */
 .carousel button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   border: none;
   color: white;
   width: 35px;
   height: 35px;
   border-radius: 50%;
   cursor: pointer;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s;
-  padding: 0; /* Quita padding extra */
-}
-
-.carousel button:hover {
-  background: var(--primary-red);
-}
-
-.carousel .prev { left: 10px; }
-.carousel .next { right: 10px; }
-
-/* ... (resto de tu código de botones, comisiones y modal) ... */
-
+  z-index:
