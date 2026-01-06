@@ -91,10 +91,10 @@ body::before {
 
 .producto img {
   width: 100%;
-  aspect-ratio: 1/1;
-  object-fit: cover; /* Recorta la imagen para que todas las cards sean iguales */
+  aspect-ratio: 1/1; /* Esto obliga a que la imagen ocupe su lugar aunque tarde en cargar */
+  object-fit: cover; 
   border-radius: 12px;
-  margin-bottom: 15px;
+  display: block; /* Asegúrate de que no diga 'none' */
 }
 
 .producto h3 { margin: 10px 0; font-size: 1.4rem; }
@@ -178,3 +178,4 @@ button:hover {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
