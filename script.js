@@ -1,8 +1,8 @@
 // 1. Lista de tus imágenes (solo agrega el nombre del archivo aquí)
 const misDibujos = [
-    { url: 'assets/dibujo1.jpg', titulo: 'Proyecto Alpha' },
-    { url: 'assets/dibujo2.jpg', titulo: 'Diseño Personaje' },
-    { url: 'assets/dibujo3.jpg', titulo: 'Ilustración 2024' },
+    { url: 'assets/KYO.png', titulo: 'Proyecto Alpha' },
+    { url: 'assets/KYO.png', titulo: 'Diseño Personaje' },
+    { url: 'assets/KYO.png', titulo: 'Ilustración 2024' },
     // Puedes seguir agregando más objetos aquí
 ];
 
@@ -24,3 +24,4 @@ const cargarGaleria = () => {
 
 // 3. Ejecutar al cargar la página
 window.addEventListener('DOMContentLoaded', cargarGaleria);
+
