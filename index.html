@@ -3,90 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KyoLab Avatars | Custom 3D Models</title>
-<link rel="stylesheet" href="style.css?v=1.1">
-...
-<script src="script.js?v=1.1"></script>
+  <title>KyoLab Avatars</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="particles-js"></div>
-
-  <nav class="navbar">
-    <div class="logo">Kyo<span>Lab</span></div>
-    <ul class="nav-links">
-      <li><a href="#catalogo">Catálogo</a></li>
-      <li><a href="#comisiones">Comisiones</a></li>
-    </ul>
-  </nav>
-
   <header class="banner">
-    <div class="banner-content">
-        <h1 class="glitch" data-text="Avatares Disponibles">Avatares Disponibles</h1>
-        <p>Modelos 3D de alta calidad optimizados para VR</p>
-        <a href="#catalogo" class="btn-scroll">Explorar Galería</a>
-    </div>
+    <h1>Avatares Disponibles</h1>
+    <p>Descubre nuestros productos destacados</p>
   </header>
 
-<main class="container">
-    <section class="catalogo-wrapper">
-        <div class="catalogo" id="catalogo">
-          </div>
-    </section>
-</main>
-
-    <section class="comision-section" id="comisiones">
-      <div class="form-container">
-          <h2>Solicitar Comisión</h2>
-          <p class="form-subtitle">Cuéntame tu idea y la haré realidad</p>
-          
-          <form action="https://formsubmit.co/Kyouko9831@gmail.com" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://kyoukonl.github.io/kyolab-avatars/gracias.html">
-    
-            <div class="input-group">
-                <input type="text" name="Nombre" placeholder="Tu Nombre" required>
-            </div>
-    
-            <div class="input-group">
-                <input type="email" name="Email" placeholder="Tu Email" required>
-            </div>
-    
-            <div class="input-group">
-                <textarea name="Descripción" rows="4" placeholder="Describe tu avatar (estilo, colores, accesorios...)" required></textarea>
-            </div>
-    
-            <div class="input-group file-input">
-                <label for="file-upload">Imagen de Referencia</label>
-                <input id="file-upload" type="file" name="Imagen de Referencia" accept="image/*">
-            </div>
-    
-            <button type="submit" class="btn-submit">Enviar Comisión</button>
-          </form>
-      </div>
-    </section>
+  <main class="catalogo" id="catalogo">
+    <!-- Productos se insertan aquí dinámicamente -->
   </main>
-
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <section class="comision-section">
+    <h2>Solicitar Comisión</h2>
+    <form action="https://formsubmit.co/Kyouko9831@gmail.com" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_captcha" value="false">
+  
+      <label>Nombre</label>
+      <input type="text" name="Nombre" required>
+  
+      <label>Email</label>
+      <input type="email" name="Email" required>
+  
+      <label>Descripción del Avatar</label>
+      <textarea name="Descripción" rows="4" required></textarea>
+  
+      <label>Imagen de Referencia</label>
+      <input type="file" name="Imagen de Referencia" accept="image/*">
+  
+      <button type="submit">Enviar Comisión</button>
+    </form>
+  </section>
   <div id="product-modal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <div class="modal-body">
-          <div class="modal-carousel">
-            <div class="modal-carousel-container" id="modal-carousel"></div>
-            <button class="modal-prev">&#10094;</button>
-            <button class="modal-next">&#10095;</button>
-          </div>
-          <div class="modal-info">
-              <h2 id="modal-title"></h2>
-              <div id="modal-price" class="price-tag"></div>
-              <button id="modal-buy-button" class="buy-button">Adquirir Avatar</button>
-          </div>
+      <div class="modal-carousel">
+        <div class="modal-carousel-container" id="modal-carousel"></div>
+        <button class="modal-prev">&#10094;</button>
+        <button class="modal-next">&#10095;</button>
       </div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-price"></p>
+      <button id="modal-buy-button" class="buy-button">Comprar</button>
     </div>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
-
-
