@@ -59,8 +59,13 @@ function updateModalCarousel() {
   modalCarouselContainer.style.transform = `translateX(-${currentModalImageIndex * 100}%)`;
 }
 
-closeBtn.addEventListener('click', () => modal.style.display = 'none');
-window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+if (closeBtn) {
+    closeBtn.addEventListener('click', () => modal.style.display = 'none');
+}
+
+window.addEventListener('click', (e) => { 
+    if (e.target === modal) modal.style.display = 'none'; 
+});
 
 document.querySelector('.modal-prev').addEventListener('click', (e) => {
   e.stopPropagation();
@@ -82,37 +87,4 @@ document.querySelector('.modal-next').addEventListener('click', (e) => {
 productos.forEach((producto, index) => {
   const item = document.createElement("div");
   item.className = "producto";
-  item.style.animation = `fadeIn 0.5s ease forwards ${index * 0.1}s`;
-  item.style.opacity = "0";
-
-  // Estructura de carrusel deslizable
-  const imagenesHTML = producto.imagenes.map(img => `<img src="${img}">`).join("");
-
-  item.innerHTML = `
-    <div class="carousel">
-      <div class="carousel-track">
-        ${imagenesHTML}
-      </div>
-      <button class="prev">‹</button>
-      <button class="next">›</button>
-    </div>
-    <h3>${producto.nombre}</h3>
-    <p class="precio-texto">${producto.precio}</p>
-    <button class="btn-info">Ver detalles</button>
-  `;
-
-  catalogo.appendChild(item);
-
-  // Lógica de Carrusel de la Card (Deslizamiento)
-  const track = item.querySelector(".carousel-track");
-  const numImages = producto.imagenes.length;
-  let currentSlide = 0;
-
-  const updateSlide = () => {
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-  };
-
-  item.querySelector(".prev").addEventListener("click", (e) => {
-    e.stopPropagation();
-    currentSlide = (currentSlide - 1 + numImages) % numImages;
-    updateSlide
+  item
