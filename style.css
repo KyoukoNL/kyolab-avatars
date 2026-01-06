@@ -24,14 +24,28 @@
   overflow: hidden; /* Importante para que las fotos no se salgan */
 }
 
-/* --- CONTENEDOR DEL CARRUSEL --- */
+/* Contenedor principal de la foto en la tarjeta */
 .carousel {
   position: relative;
   width: 100%;
-  aspect-ratio: 1/1; /* Mantiene la tarjeta cuadrada y estable */
-  overflow: hidden;
+  aspect-ratio: 1/1; /* Mantiene el cuadrado */
+  overflow: hidden; /* Corta las fotos que sobran a los lados */
   border-radius: 12px;
-  margin-bottom: 15px;
+}
+
+/* La fila de fotos que se desliza */
+.carousel-track {
+  display: flex; /* Pone las fotos una al lado de la otra */
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-track img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0; /* EVITA QUE LAS FOTOS SE APLASTEN */
 }
 
 /* LA "TIRA" QUE SE DESLIZA */
@@ -78,3 +92,4 @@
 .carousel .next { right: 10px; }
 
 /* ... (resto de tu código de botones, comisiones y modal) ... */
+
