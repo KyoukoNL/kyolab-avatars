@@ -1,207 +1,179 @@
 const productos = [
-    {
-      nombre: "Airi + Shinano",
-      precio: "60 USD",
-      imagenes: [
-        "images/KYO.png",
-        "images/KYO2.png",
-        "images/KYO.png"
-      ],
-      linkCompra: "https://www.paypal.com/ncp/payment/A2QFXUXM7S822"
-    },
-    {
-      nombre: "Airi + Karin",
-      precio: "75 USD",
-      imagenes: [
-        "images/KYO.png",
-        "images/KYO.png",
-        "images/KYO.png"
-      ],
-      linkCompra: "https://www.paypal.com/ncp/payment/TZQ7MMM7G3YMY"
-    },
-    {
-      nombre: "Kimera Custom",
-      precio: "80 USD",
-      imagenes: [
-        "images/KYO.png",
-        "images/KYO.png",
-        "images/KYO.png"
-      ],
-      linkCompra: "https://www.paypal.com/ncp/payment/VCZE7EX5FWV38"
-    },
-    {
-      nombre: "Cualquier Avatar",
-      precio: "85 USD",
-      imagenes: [
-        "images/KYO.png",
-        "images/KYO.png",
-        "images/KYO.png"
-      ],
-      linkCompra: "https://www.paypal.com/ncp/payment/E6UCTE6SLHQQN"
-    },
-    {
-      nombre: "Cyber Neko V2",
-      precio: "90 USD",
-      imagenes: [
-        "images/KYO.png",
-        "images/KYO.png",
-        "images/KYO.png"
-      ],
-      linkCompra: "https://www.paypal.com/ncp/payment/8UEPUE49GVCDU"
-    },
-    {
-      nombre: "Glitch Oni X",
-      precio: "100 USD",
-      imagenes: [
-        "images/KYO.png",
-        "images/KYO.png",
-        "images/KYO.png"
-      ],
-      linkCompra: "https://www.paypal.com/ncp/payment/V4MBWF74FBJ3U"
-    }
-  ];
-  
-  const catalogo = document.getElementById("catalogo");
-  
-  // Referencias al modal
-  const modal = document.getElementById('product-modal');
-  const modalImage = document.getElementById('modal-image');
-  const modalTitle = document.getElementById('modal-title');
-  const modalPrice = document.getElementById('modal-price');
-  const closeBtn = document.querySelector('.modal .close');
-  const modalBuyButton = document.getElementById("modal-buy-button");
-  const modalCarousel = document.getElementById("modal-carousel");
-  let currentModalImageIndex = 0;
-  let modalImages = [];
-
-  // Cerrar modal
-  closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
-
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) modal.style.display = 'none';
-  });
-  
-  document.querySelector('.modal-prev').addEventListener('click', () => {
-    if (currentModalImageIndex > 0) {
-      currentModalImageIndex--;
-      updateModalCarousel();
-    }
-  });
-  
-  document.querySelector('.modal-next').addEventListener('click', () => {
-    if (currentModalImageIndex < modalImages.length - 1) {
-      currentModalImageIndex++;
-      updateModalCarousel();
-    }
-  });
-  
-  function updateModalCarousel() {
-    const carousel = document.getElementById('modal-carousel');
-    carousel.innerHTML = '';
-  
-    modalImages.forEach(src => {
-      const img = document.createElement('img');
-      img.src = src;
-      carousel.appendChild(img);
-    });
-  
-    carousel.style.transform = `translateX(-${currentModalImageIndex * 100}%)`;
+  {
+    nombre: "Airi + Shinano",
+    precio: "60 USD",
+    imagenes: ["images/KYO.png", "images/KYO2.png", "images/KYO.png"],
+    linkCompra: "https://www.paypal.com/ncp/payment/A2QFXUXM7S822"
+  },
+  {
+    nombre: "Airi + Karin",
+    precio: "75 USD",
+    imagenes: ["images/KYO.png", "images/KYO.png", "images/KYO.png"],
+    linkCompra: "https://www.paypal.com/ncp/payment/TZQ7MMM7G3YMY"
+  },
+  {
+    nombre: "Kimera Custom",
+    precio: "80 USD",
+    imagenes: ["images/KYO.png", "images/KYO.png", "images/KYO.png"],
+    linkCompra: "https://www.paypal.com/ncp/payment/VCZE7EX5FWV38"
+  },
+  {
+    nombre: "Cualquier Avatar",
+    precio: "85 USD",
+    imagenes: ["images/KYO.png", "images/KYO.png", "images/KYO.png"],
+    linkCompra: "https://www.paypal.com/ncp/payment/E6UCTE6SLHQQN"
+  },
+  {
+    nombre: "Cyber Neko V2",
+    precio: "90 USD",
+    imagenes: ["images/KYO.png", "images/KYO.png", "images/KYO.png"],
+    linkCompra: "https://www.paypal.com/ncp/payment/8UEPUE49GVCDU"
+  },
+  {
+    nombre: "Glitch Oni X",
+    precio: "100 USD",
+    imagenes: ["images/KYO.png", "images/KYO.png", "images/KYO.png"],
+    linkCompra: "https://www.paypal.com/ncp/payment/V4MBWF74FBJ3U"
   }
+];
 
-  productos.forEach((producto, index) => {
-    const item = document.createElement("div");
-    item.className = "producto";
-  
-    const id = `carousel-${index}`;
-    const imagenesHTML = producto.imagenes.map((img, i) => `
-      <img src="${img}" class="${i === 0 ? 'active' : ''}" data-index="${i}">
-    `).join("");
-  
-    item.innerHTML = `
-      <div class="carousel" id="${id}">
-        ${imagenesHTML}
-        <button class="prev">‹</button>
-        <button class="next">›</button>
-      </div>
-      <h3>${producto.nombre}</h3>
-      <p>${producto.precio}</p>
-      <a href="${producto.linkCompra}" target="_blank">
-        <button>Comprar por ${producto.precio}</button>
-      </a>
-    `;
-  
-    catalogo.appendChild(item);
-  
-    // Control del carrusel
-    const carousel = item.querySelector(".carousel");
-    const images = carousel.querySelectorAll("img");
-    let current = 0;
-  
-    const showImage = (index) => {
-      images.forEach(img => img.classList.remove("active"));
-      images[index].classList.add("active");
-    };
-  
-    carousel.querySelector(".prev").addEventListener("click", () => {
-      current = (current - 1 + images.length) % images.length;
-      showImage(current);
-    });
-  
-    carousel.querySelector(".next").addEventListener("click", () => {
-      current = (current + 1) % images.length;
-      showImage(current);
-    });
+const catalogo = document.getElementById("catalogo");
+const modal = document.getElementById('product-modal');
+const modalTitle = document.getElementById('modal-title');
+const modalPrice = document.getElementById('modal-price');
+const closeBtn = document.querySelector('.modal .close');
+const modalBuyButton = document.getElementById("modal-buy-button");
+const modalCarouselContainer = document.getElementById("modal-carousel");
+
+let currentModalImageIndex = 0;
+let modalImages = [];
+
+// --- FUNCIONES DEL MODAL ---
+function updateModalCarousel() {
+  modalCarouselContainer.innerHTML = '';
+  modalImages.forEach(src => {
+    const img = document.createElement('img');
+    img.src = src;
+    modalCarouselContainer.appendChild(img);
+  });
+  modalCarouselContainer.style.transform = `translateX(-${currentModalImageIndex * 100}%)`;
+}
+
+closeBtn.addEventListener('click', () => modal.style.display = 'none');
+window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
+
+document.querySelector('.modal-prev').addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (currentModalImageIndex > 0) {
+    currentModalImageIndex--;
+    updateModalCarousel();
+  }
+});
+
+document.querySelector('.modal-next').addEventListener('click', (e) => {
+  e.stopPropagation();
+  if (currentModalImageIndex < modalImages.length - 1) {
+    currentModalImageIndex++;
+    updateModalCarousel();
+  }
+});
+
+// --- RENDERIZADO DE PRODUCTOS ---
+productos.forEach((producto, index) => {
+  const item = document.createElement("div");
+  item.className = "producto";
+  // Añadimos una animación de entrada (opcional con CSS)
+  item.style.animation = `fadeIn 0.5s ease forwards ${index * 0.1}s`;
+  item.style.opacity = "0";
+
+  const imagenesHTML = producto.imagenes.map((img, i) => `
+    <img src="${img}" class="${i === 0 ? 'active' : ''}" data-index="${i}">
+  `).join("");
+
+  item.innerHTML = `
+    <div class="carousel">
+      ${imagenesHTML}
+      <button class="prev">‹</button>
+      <button class="next">›</button>
+    </div>
+    <h3>${producto.nombre}</h3>
+    <p class="precio-texto">${producto.precio}</p>
+    <button class="btn-info">Ver detalles</button>
+  `;
+
+  catalogo.appendChild(item);
+
+  // Lógica de Carrusel de la Card
+  const carousel = item.querySelector(".carousel");
+  const images = carousel.querySelectorAll("img");
+  let current = 0;
+
+  const showImage = (idx) => {
+    images.forEach(img => img.classList.remove("active"));
+    images[idx].classList.add("active");
+  };
+
+  item.querySelector(".prev").addEventListener("click", (e) => {
+    e.stopPropagation(); // Evita abrir el modal al cambiar foto
+    current = (current - 1 + images.length) % images.length;
+    showImage(current);
+  });
+
+  item.querySelector(".next").addEventListener("click", (e) => {
+    e.stopPropagation(); // Evita abrir el modal al cambiar foto
+    current = (current + 1) % images.length;
+    showImage(current);
+  });
+
+  // Abrir Modal
+  item.addEventListener("click", () => {
+    modalTitle.textContent = producto.nombre;
+    modalPrice.textContent = producto.precio;
+    modalImages = producto.imagenes;
+    currentModalImageIndex = 0;
+    updateModalCarousel();
+    modal.style.display = 'flex';
     
-    item.addEventListener("click", () => {
-      modalImages.src = producto.imagenes[0];
-      modalTitle.textContent = producto.nombre;
-      modalPrice.textContent = producto.precio;
-      modal.style.display = 'flex';
-      modalImages = producto.imagenes;
-      currentModalImageIndex = 0;
-      updateModalCarousel();
-      // Asignar el enlace de compra
-      modalBuyButton.onclick = () => {
-        window.open(producto.linkCompra, "_blank");
-      };
-    });
+    modalBuyButton.onclick = () => window.open(producto.linkCompra, "_blank");
   });
-  
-  particlesJS("particles-js", {
-    particles: {
-      number: { value: 60 },
-      color: { value: "#ffffff" },
-      shape: { type: "circle" },
-      opacity: { value: 0.3 },
-      size: { value: 3 },
-      line_linked: {
-        enable: true,
-        distance: 100,
-        color: "#ffffff",
-        opacity: 0.2,
-        width: 1
-      },
-      move: {
-        enable: true,
-        speed: 1.5,
-        direction: "none",
-        random: false,
-        straight: false,
-        bounce: true
-      }
+});
+
+// --- CONFIGURACIÓN DE PARTÍCULAS (Ajustada para mejor rendimiento) ---
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 50, density: { enable: true, value_area: 800 } },
+    color: { value: "#ff3e3e" }, // Color rojo para combinar con tu tema
+    shape: { type: "circle" },
+    opacity: { value: 0.5, random: true },
+    size: { value: 2, random: true },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#ff3e3e",
+      opacity: 0.2,
+      width: 1
     },
-    interactivity: {
-      detect_on: "window",
-      events: {
-        onhover: { enable: true, mode: "repulse" },
-        onclick: { enable: true, mode: "push" }
-      },
-      modes: {
-        repulse: { distance: 150, duration: 0.4 },
-        push: { particles_nb: 4 }
-      }
+    move: {
+      enable: true,
+      speed: 1,
+      direction: "none",
+      random: true,
+      straight: false,
+      out_mode: "out",
+      bounce: false,
+    }
+  },
+  interactivity: {
+    detect_on: "canvas",
+    events: {
+      onhover: { enable: true, mode: "grab" },
+      onclick: { enable: true, mode: "push" },
+      resize: true
     },
-    retina_detect: true
-  });
+    modes: {
+      grab: { distance: 200, line_linked: { opacity: 0.5 } },
+      push: { particles_nb: 3 }
+    }
+  },
+  retina_detect: true
+});
