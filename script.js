@@ -3,28 +3,28 @@ const productos = [
     nombre: "Shinari",
     precio: "$60 USD",
     imagenes: [
-      "https://via.placeholder.com/400x300?text=Camisa+1",
-      "https://via.placeholder.com/400x300?text=Camisa+2",
-      "https://via.placeholder.com/400x300?text=Camisa+3"
+      KYO.png,
+      KYO2.png,
+      KYO.png
     ],
-    linkCompra: "https://www.paypal.com/paypalme/kyouko9831/60"
+    linkCompra: "https://www.paypal.com/ncp/payment/2LHY5CUSG467A"
   },
   {
     nombre: "Airi Gotica",
     precio: "$60 USD",
     imagenes: [
-      "https://via.placeholder.com/400x300?text=Zapatos+1",
-      "https://via.placeholder.com/400x300?text=Zapatos+2"
+      KYO2.png,
+      KYO.png
     ],
-    linkCompra: "https://www.paypal.com/paypalme/kyouko9831/60"
+    linkCompra: "https://www.paypal.com/ncp/payment/2LHY5CUSG467A"
   },
   {
     nombre: "Manuka 2",
     precio: "$60 USD",
     imagenes: [
-      "https://via.placeholder.com/400x300?text=Bolso+1",
+      KYO2.png,
     ],
-    linkCompra: "https://www.paypal.com/paypalme/kyouko9831/60"
+    linkCompra: "https://www.paypal.com/ncp/payment/2LHY5CUSG467A"
   }
 ];
 
@@ -82,3 +82,4 @@ productos.forEach((producto, index) => {
     });
   }
 });
+
