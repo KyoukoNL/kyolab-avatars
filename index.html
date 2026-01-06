@@ -1,22 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Artístico</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KyoLab Avatars</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <div class="logo">ART_STUDIO</div>
-        <div class="links">
-            <a href="#galeria">Trabajos</a>
-            <a href="#contacto">Contacto</a>
-        </div>
-    </nav>
+  <div id="particles-js"></div>
+  <header class="banner">
+    <h1>Avatares Disponibles</h1>
+    <p>Descubre nuestros productos destacados</p>
+  </header>
 
-    <main id="galeria" class="grid-container"></main>
-
-    <script src="script.js"></script>
+  <main class="catalogo" id="catalogo">
+    <!-- Productos se insertan aquí dinámicamente -->
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <section class="comision-section">
+    <h2>Solicitar Comisión</h2>
+    <form action="https://formsubmit.co/Kyouko9831@gmail.com" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_captcha" value="false">
+  
+      <label>Nombre</label>
+      <input type="text" name="Nombre" required>
+  
+      <label>Email</label>
+      <input type="email" name="Email" required>
+  
+      <label>Descripción del Avatar</label>
+      <textarea name="Descripción" rows="4" required></textarea>
+  
+      <label>Imagen de Referencia</label>
+      <input type="file" name="Imagen de Referencia" accept="image/*">
+  
+      <button type="submit">Enviar Comisión</button>
+    </form>
+  </section>
+  <div id="product-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-carousel">
+        <div class="modal-carousel-container" id="modal-carousel"></div>
+        <button class="modal-prev">&#10094;</button>
+        <button class="modal-next">&#10095;</button>
+      </div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-price"></p>
+      <button id="modal-buy-button" class="buy-button">Comprar</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
